@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_character"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:fontFamily="@font/maplestory_light"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_dialogue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_character"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            android:elevation="10dp"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="20dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/iv_character"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:adjustViewBounds="true"
+            android:src="@raw/tornaduck_default"
+            app:layout_constraintTop_toBottomOf="@id/tv_message"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/character_ui" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/cl_character"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <TextView
+            android:id="@+id/tv_name"
+            android:fontFamily="@font/maplestory_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="@string/name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:fontFamily="@font/maplestory_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name"
+            android:layout_marginEnd="8dp"
+            android:textSize="16dp"
+            android:text="Lv. 1"
+            android:textColor="#454545"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_age"
+            android:text="@string/age"
+            android:textColor="#454545"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_attribute"
+            android:text="@string/attribute"
+            android:textColor="#454545"
+            app:layout_constraintTop_toBottomOf="@id/tv_age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_habitat"
+            android:text="@string/habitat"
+            android:textColor="#454545"
+            app:layout_constraintTop_toBottomOf="@id/tv_attribute"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_habitat"
+            app:layout_constraintBottom_toTopOf="@id/cl_conversation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/iv_sunshine"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_sun"
+                android:layout_marginStart="24dp"
+                app:layout_constraintTop_toTopOf="@id/pb_sunshine"
+                app:layout_constraintBottom_toBottomOf="@id/pb_sunshine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/pb_sunshine"
+                />
+
+            <ProgressBar
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sunshine"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:progressDrawable="@drawable/pb_status"
+                android:progressBackgroundTint="#FFE8E0"
+                android:progressTint="#F8794D"
+                android:max="100"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"
+                android:id="@+id/pb_sunshine"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <ImageView
+                android:id="@+id/iv_water"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_water"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintTop_toTopOf="@id/pb_water"
+                app:layout_constraintBottom_toBottomOf="@id/pb_water"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/pb_water"
+                />
+
+            <ProgressBar
+                app:layout_constraintTop_toBottomOf="@id/iv_sunshine"
+                app:layout_constraintStart_toEndOf="@id/iv_water"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:progressBackgroundTint="#E1E8FF"
+                android:progressDrawable="@drawable/pb_status"
+                android:progressTint="#5772FF"
+                android:max="100"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/pb_water"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <ImageView
+                android:id="@+id/iv_wind"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_wind"
+                app:layout_constraintTop_toTopOf="@id/pb_wind"
+                app:layout_constraintBottom_toBottomOf="@id/pb_wind"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/pb_wind"
+                />
+
+            <ProgressBar
+                app:layout_constraintTop_toBottomOf="@id/iv_water"
+                app:layout_constraintStart_toEndOf="@id/iv_wind"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:progressBackgroundTint="#DBFAFF"
+                android:progressDrawable="@drawable/pb_status"
+                android:progressTint="#85EEFF"
+                android:max="100"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:id="@+id/pb_wind"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_conversation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingVertical="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/sub"
+            android:background="@drawable/bg_dashboard"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:fontFamily="@font/maplestory_bold"
+                android:id="@+id/tv_hint"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="#00e75c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Plantus</string>
+    <string name="character_ui">Character UI</string>
+    <string name="name">토네이덕</string>
+    <string name="attr_wind">바람</string>
+    <string name="age">나이 : 11일차</string>
+    <string name="attribute">속성 : 바람</string>
+    <string name="habitat">거주지 : 전농동</string>
+    <string name="hint_water">분무기로 화분에 물을 줘보세요\n한 번이면 충분해요</string>
+    <string name="hint_sun">화분을 들고 밖으로 나가 30초 간 햇빛을 쬐여보세요</string>
+    <string name="hint_wind">화분에 부채질을 해보세요</string>
+    <string name="message_water">나 목 말라..</string>
+    <string name="message_sun">햇빛을 쬐고 싶어</string>
+    <string name="message_wind">좀 답답해.. 바람 좀 쐬고 싶어</string>
+    <string name="hint_happiness">덕분에 토네이덕이 행복해하네요! 고마워요</string>
+    <string name="blank"> </string>
+</resources>

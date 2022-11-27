@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022247381744",
+    "project_id": "plantus-d6eea",
+    "storage_bucket": "plantus-d6eea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022247381744:android:7f653cf77f917e31157035",
+        "android_client_info": {
+          "package_name": "com.example.plantus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022247381744-5nj8id3309d3c3c3frk6h03ic83cfg18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlqA62E-7RM2Yxf8VhhOMe4g9xI_cFmkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022247381744-5nj8id3309d3c3c3frk6h03ic83cfg18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
