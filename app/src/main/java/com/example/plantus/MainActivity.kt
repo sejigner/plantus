@@ -1,5 +1,6 @@
 package com.example.plantus
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         val tvMessage = findViewById<TextView>(R.id.tv_message)
         val tvHint = findViewById<TextView>(R.id.tv_hint)
+        val ivDashboard = findViewById<ImageView>(R.id.iv_dashboard)
         val fadeIn = AnimationUtils.loadAnimation(this,R.anim.fadein)
         val database = Firebase.database("https://plantus-d6eea-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val messageRef = database.getReference("message")
@@ -38,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         val tipRef = database.getReference("tip")
         val helpRef = database.getReference("help")
 
+        ivDashboard.setOnClickListener {
+            startActivity(Intent(this@MainActivity,DashboardActivity::class.java))
+        }
         val messageListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("message", "Message received")

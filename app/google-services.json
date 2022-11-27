@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "1022247381744",
-    "project_id": "plantus-d6eea",
-    "storage_bucket": "plantus-d6eea.appspot.com"
+    "project_number": "1040100622073",
+    "firebase_url": "https://asdsadsa-1d482-default-rtdb.firebaseio.com",
+    "project_id": "asdsadsa-1d482",
+    "storage_bucket": "asdsadsa-1d482.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1022247381744:android:7f653cf77f917e31157035",
+        "mobilesdk_app_id": "1:1040100622073:android:16e89105320b892c4fac28",
         "android_client_info": {
           "package_name": "com.example.plantus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1022247381744-5nj8id3309d3c3c3frk6h03ic83cfg18.apps.googleusercontent.com",
+          "client_id": "1040100622073-1qk18udb9v3mklkqf5cma0o9lmcb024s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAlqA62E-7RM2Yxf8VhhOMe4g9xI_cFmkw"
+          "current_key": "AIzaSyBgMmMkOzAOyehxUxND8Lma-8kPF--sZ3E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1022247381744-5nj8id3309d3c3c3frk6h03ic83cfg18.apps.googleusercontent.com",
+              "client_id": "1040100622073-1qk18udb9v3mklkqf5cma0o9lmcb024s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
