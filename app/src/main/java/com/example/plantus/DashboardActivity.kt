@@ -1,8 +1,10 @@
 package com.example.plantus
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,16 +25,20 @@ class DashboardActivity : AppCompatActivity() {
 
 
         val database = Firebase.database("https://asdsadsa-1d482-default-rtdb.firebaseio.com/")
-        val humidityRef = database.getReference("Humidity_value")
-        val luxRef = database.getReference("Lux_value")
-        val soilRef = database.getReference("Soil_value")
-        val temperatureRef = database.getReference("Temperature_value")
+        val humidityRef = database.getReference("dashboard/Humidity_value")
+        val luxRef = database.getReference("dashboard/Lux_value")
+        val soilRef = database.getReference("dashboard/Soil_value")
+        val temperatureRef = database.getReference("dashboard/Temperature_value")
 
         val tvHumidity = findViewById<TextView>(R.id.tv_value_humidity)
         val tvLux = findViewById<TextView>(R.id.tv_value_lux)
         val tvSoil = findViewById<TextView>(R.id.tv_value_soil)
         val tvTemperature = findViewById<TextView>(R.id.tv_value_temperature)
+        val ivHome = findViewById<ImageView>(R.id.iv_home)
 
+        ivHome.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity,MainActivity::class.java))
+        }
         val humidityListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("need", "Message received")

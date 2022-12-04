@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:src="@drawable/ic_baseline_developer_board_24"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="20dp"

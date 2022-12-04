@@ -19,7 +19,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
-@IgnoreExtraProperties
+
 data class Tip(val tip: String? = null) {}
 data class Reaction(val reaction: String? = null) {}
 data class Message(val message: String? = null) {}
@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         val tvHint = findViewById<TextView>(R.id.tv_hint)
         val ivDashboard = findViewById<ImageView>(R.id.iv_dashboard)
         val fadeIn = AnimationUtils.loadAnimation(this,R.anim.fadein)
-        val database = Firebase.database("https://plantus-d6eea-default-rtdb.asia-southeast1.firebasedatabase.app/")
-        val messageRef = database.getReference("message")
-        val reactionRef = database.getReference("reaction")
-        val tipRef = database.getReference("tip")
-        val helpRef = database.getReference("help")
+        val database = Firebase.database("https://asdsadsa-1d482-default-rtdb.firebaseio.com/")
+        val messageRef = database.getReference("character/message")
+        val reactionRef = database.getReference("character/reaction")
+        val tipRef = database.getReference("character/hint")
+        val helpRef = database.getReference("character/help")
 
         ivDashboard.setOnClickListener {
             startActivity(Intent(this@MainActivity,DashboardActivity::class.java))
@@ -47,10 +47,10 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("message", "Message received")
                 // Get Post object and use the values to update the UI
-                val data = dataSnapshot.getValue<Message>()
+                val data = dataSnapshot.getValue<String>()
                 if(data!=null) {
-                    val message = data.message
-                    if(message!!.isNotEmpty()) {
+                    val message = data
+                    if(message.isNotEmpty()) {
                         tvMessage.visibility = View.VISIBLE
                         tvMessage.text = message.toString()
                         messageFadeIn(tvMessage, fadeIn)
@@ -66,10 +66,10 @@ class MainActivity : AppCompatActivity() {
 
         val helpListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val data = snapshot.getValue<Help>()
+                val data = snapshot.getValue<String>()
                 if(data!=null) {
-                    val help = data.help
-                    if(!help.isNullOrEmpty()) {
+                    val help = data
+                    if(help.isNotEmpty()) {
                         setStatus(help)
                     }
                 }
@@ -81,10 +81,10 @@ class MainActivity : AppCompatActivity() {
         }
         val reactionListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val data = dataSnapshot.getValue<Reaction>()
+                val data = dataSnapshot.getValue<String>()
                 if(data!=null) {
-                    val reaction = data.reaction
-                    if(!reaction.isNullOrEmpty()) {
+                    val reaction = data
+                    if(reaction.isNotEmpty()) {
                         showReaction(reaction)
                     }
                 }
@@ -100,9 +100,8 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("need", "Message received")
                 // Get Post object and use the values to update the UI
-                val data = dataSnapshot.getValue<Tip>()
-                if(data!=null) {
-                    val tip = data.tip
+                val tip = dataSnapshot.getValue<String>()
+                if(tip!=null) {
                     showHint(tip, tvHint)
                 }
             }
