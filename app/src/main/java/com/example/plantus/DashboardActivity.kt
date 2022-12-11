@@ -12,11 +12,17 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+val RestAPIKey = ""
 
 data class Humidity(val Humidity_value: String? = null) {}
 data class Lux(val Lux_value: String? = null) {}
 data class Soil(val Soil_value: String? = null) {}
 data class Temperature(val Temperature_value: String? = null) {}
+
 
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,5 +111,34 @@ class DashboardActivity : AppCompatActivity() {
         soilRef.addValueEventListener(soilListener)
         temperatureRef.addValueEventListener(temperatureListener)
 
+        requestToRestAPI()
     }
+}
+
+private fun requestToRestAPI() {
+    val retrofit = RetrofitClient.getInstance()
+
+    val service = retrofit.create(RetrofitAPI::class.java)
+    // sTest: 검색어 문자열
+    service.getPlantList(RestAPIKey, "")
+        .enqueue(object: Callback<PlantList> {
+            override fun onResponse(
+                call: Call<PlantList>,
+                response: Response<PlantList>
+            ) {
+                Log.d("Success", response.body().toString())
+
+                response.body()?.let {
+                    processPlant(response.body()!!)
+                }
+            }
+
+            override fun onFailure(
+                call: Call<PlantList>,
+                t: Throwable
+            ) {
+                Log.d("Failure", t.localizedMessage)
+            }
+
+        })
 }

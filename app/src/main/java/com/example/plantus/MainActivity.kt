@@ -19,7 +19,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
-
 data class Tip(val tip: String? = null) {}
 data class Reaction(val reaction: String? = null) {}
 data class Message(val message: String? = null) {}
