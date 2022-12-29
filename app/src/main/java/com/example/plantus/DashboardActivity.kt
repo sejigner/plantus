@@ -1,11 +1,15 @@
 package com.example.plantus
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.plantus.databinding.ActivityDashboardBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -16,7 +20,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-val RestAPIKey = ""
+
+val RestAPIKey = "20221212PWK1VQ3ENERZMKRB9F47G"
 
 data class Humidity(val Humidity_value: String? = null) {}
 data class Lux(val Lux_value: String? = null) {}
@@ -27,7 +32,8 @@ data class Temperature(val Temperature_value: String? = null) {}
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        val bindingMain = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(bindingMain.root)
 
 
         val database = Firebase.database("https://asdsadsa-1d482-default-rtdb.firebaseio.com/")
@@ -36,11 +42,12 @@ class DashboardActivity : AppCompatActivity() {
         val soilRef = database.getReference("dashboard/Soil_value")
         val temperatureRef = database.getReference("dashboard/Temperature_value")
 
-        val tvHumidity = findViewById<TextView>(R.id.tv_value_humidity)
-        val tvLux = findViewById<TextView>(R.id.tv_value_lux)
-        val tvSoil = findViewById<TextView>(R.id.tv_value_soil)
-        val tvTemperature = findViewById<TextView>(R.id.tv_value_temperature)
-        val ivHome = findViewById<ImageView>(R.id.iv_home)
+        val tvHumidity = bindingMain.tvValueHumidity
+        val tvLux = bindingMain.tvValueLux
+        val tvSoil = bindingMain.tvValueSoil
+        val tvTemperature = bindingMain.tvValueTemperature
+        val ivHome = bindingMain.ivHome
+        val rvAPIResponse = bindingMain.rvApiResponse
 
         ivHome.setOnClickListener {
             startActivity(Intent(this@DashboardActivity,MainActivity::class.java))
@@ -111,34 +118,23 @@ class DashboardActivity : AppCompatActivity() {
         soilRef.addValueEventListener(soilListener)
         temperatureRef.addValueEventListener(temperatureListener)
 
-        requestToRestAPI()
+        Thread {
+            try {
+                val plantList = APIResponse().getData()// 하단의 getData 메소드를 통해 데이터를 파싱
+                runOnUiThread(Runnable {
+                    val adapter = PlantListAdapter(plantList)
+                    val layoutManager = LinearLayoutManager(this)
+                    rvAPIResponse.layoutManager = layoutManager
+                    rvAPIResponse.adapter = adapter
+                    rvAPIResponse.addItemDecoration(DividerItemDecoration(this,LinearLayoutManager.VERTICAL))
+
+                })
+            } catch(e: InterruptedException) {
+                Log.d("DataFetchingOnThread",e.toString())
+            }
+
+        }.start()
     }
 }
 
-private fun requestToRestAPI() {
-    val retrofit = RetrofitClient.getInstance()
 
-    val service = retrofit.create(RetrofitAPI::class.java)
-    // sTest: 검색어 문자열
-    service.getPlantList(RestAPIKey, "")
-        .enqueue(object: Callback<PlantList> {
-            override fun onResponse(
-                call: Call<PlantList>,
-                response: Response<PlantList>
-            ) {
-                Log.d("Success", response.body().toString())
-
-                response.body()?.let {
-                    processPlant(response.body()!!)
-                }
-            }
-
-            override fun onFailure(
-                call: Call<PlantList>,
-                t: Throwable
-            ) {
-                Log.d("Failure", t.localizedMessage)
-            }
-
-        })
-}

@@ -7,7 +7,10 @@ plugins {
 
 android {
     compileSdk 33
-
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
     defaultConfig {
         applicationId "com.example.plantus"
         minSdk 23
