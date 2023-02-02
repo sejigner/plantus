@@ -56,11 +56,11 @@ class MainActivity : AppCompatActivity() {
                     Log.d("temp", "temp: $temp")
                     Log.d("lux", "lux: $lux")
 
-                    if (lux.toInt() < 50) {
+                    if (lux.toFloat() < 50) {
                         showFeedback("low_lux")
-                    } else if (lux.toInt() in 50..69) {
+                    } else if (lux.toFloat() in 50.0..69.0) {
                         showFeedback("moderate_lux")
-                    } else if (lux.toInt() >= 70) {
+                    } else if (lux.toFloat() >= 70) {
                         showFeedback("high_lux")
                     }
 //                    if (soil.toFloat() < 10.0) {
