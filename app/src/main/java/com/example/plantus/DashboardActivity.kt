@@ -46,19 +46,15 @@ class DashboardActivity : AppCompatActivity() {
         val tvLux = bindingMain.tvValueLux
         val tvSoil = bindingMain.tvValueSoil
         val tvTemperature = bindingMain.tvValueTemperature
-        val ivHome = bindingMain.ivHome
         val rvAPIResponse = bindingMain.rvApiResponse
 
-        ivHome.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity,MainActivity::class.java))
-        }
         val humidityListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("need", "Message received")
                 // Get Post object and use the values to update the UI
                 val data = dataSnapshot.getValue<String>()
                 if (data != null) {
-                    tvHumidity.text = data
+                    tvHumidity.text = "$data %"
                 }
             }
 
@@ -73,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
                 // Get Post object and use the values to update the UI
                 val data = dataSnapshot.getValue<String>()
                 if (data != null) {
-                    tvLux.text = data
+                    tvLux.text = "$data %"
                 }
             }
 
@@ -88,7 +84,7 @@ class DashboardActivity : AppCompatActivity() {
                 // Get Post object and use the values to update the UI
                 val data = dataSnapshot.getValue<String>()
                 if (data != null) {
-                    tvSoil.text = data
+                    tvSoil.text = "$data %"
                 }
             }
 
@@ -103,7 +99,7 @@ class DashboardActivity : AppCompatActivity() {
                 // Get Post object and use the values to update the UI
                 val data = dataSnapshot.getValue<String>()
                 if (data != null) {
-                    tvTemperature.text = data
+                    tvTemperature.text = "$data ºC"
                 }
             }
 
